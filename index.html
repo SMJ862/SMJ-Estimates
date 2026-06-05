@@ -303,7 +303,7 @@ body {
         </div>
         <div class="form-group">
           <label>Customer Phone</label>
-          <input type="text" id="fPhone" autocomplete="off" maxlength="15">
+          <input type="tel" id="fPhone" autocomplete="off" maxlength="15" inputmode="numeric">
         </div>
       </div>
       <div class="rows-label">Estimate Items</div>
@@ -511,6 +511,18 @@ document.getElementById('closeEditBtn').addEventListener('click', closeEditModal
 document.getElementById('cancelEditBtn').addEventListener('click', closeEditModal);
 document.getElementById('editModal').addEventListener('click', function(e){ if(e.target===this) closeEditModal(); });
 document.addEventListener('click', function(e){ if(e.target && e.target.id==='addRowBtn'){ addRow('',''); var tbody=document.getElementById('estRowsBody'); if(tbody.lastElementChild) tbody.lastElementChild.querySelector('input').focus(); } });
+
+// ── NAME -> PHONE tab on Enter ──
+document.getElementById('fName').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') { e.preventDefault(); document.getElementById('fPhone').focus(); }
+});
+document.getElementById('fPhone').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    var tbody = document.getElementById('estRowsBody');
+    if (tbody.firstElementChild) tbody.firstElementChild.querySelector('input').focus();
+  }
+});
 
 // ── ROWS ──
 function clearRows() {
