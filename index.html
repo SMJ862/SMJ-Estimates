@@ -579,7 +579,7 @@ document.getElementById('saveBtn').addEventListener('click', async function() {
   const phone = document.getElementById('fPhone').value.trim();
   const slipNo = document.getElementById('fSlipNo').value;
   const date   = document.getElementById('fDate').value;
-  const rows   = getRows().filter(r => r.particulars.trim() || r.wtAmt.trim());
+  const rows   = getRows();
 
   if (!name) { showToast('Please enter customer name.', true); return; }
   if (slipNo === 'Generating…') { showToast('Please wait, slip number is being generated.', true); return; }
@@ -626,7 +626,7 @@ document.getElementById('confirmDeleteBtn').addEventListener('click', async func
 
 // ── PRINT ──
 function buildSlipHTML(est) {
-  const rowsHtml = (est.rows||[]).filter(r=>r.particulars||r.wtAmt).map(function(r) {
+  const rowsHtml = (est.rows||[]).map(function(r) {
     const p = r.particulars || '';
     const w = r.wtAmt || '';
     const is916  = /22\s*[Kk]\s*916\s*[Hh]allmark/i.test(p);
